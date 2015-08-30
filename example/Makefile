@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Sun Aug 30 04:49:10 2015 bastien penavayre
-## Last update Sun Aug 30 05:28:23 2015 bastien penavayre
+## Last update Sun Aug 30 08:53:49 2015 bastien penavayre
 ##
 
 CC =		gcc
@@ -20,7 +20,7 @@ OBJ =		$(SRC:.c=.o)
 
 COMMON =	-W -Wall -Werror -Wextra
 
-CFLAGS =	$(COMMON) -I ../inc/ -I ../TypeListC/inc/
+CFLAGS =	$(COMMON) -I ../inc/
 
 LDFLAGS =	$(COMMON) -L .. -lExcept -Wl,-rpath=../
 

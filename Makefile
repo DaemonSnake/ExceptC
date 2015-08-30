@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Sun Aug 30 03:51:43 2015 bastien penavayre
-## Last update Sun Aug 30 08:51:27 2015 bastien penavayre
+## Last update Sun Aug 30 08:53:32 2015 bastien penavayre
 ##
 
 CC =		gcc
@@ -23,7 +23,7 @@ OBJS =		$(OBJ) TypeListC/libListTypeC.a
 
 COMMON =	-W -Wall -Werror -Wextra
 
-CFLAGS =	$(COMMON) -I TypeListC/inc/ -fPIC -I inc
+CFLAGS =	$(COMMON) -fPIC -I inc
 
 LDFLAGS =	$(COMMON)
 

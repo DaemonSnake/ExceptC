@@ -5,14 +5,14 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:22:46 2015 bastien penavayre
-** Last update Sun Aug 30 07:56:18 2015 bastien penavayre
+** Last update Sun Aug 30 08:54:36 2015 bastien penavayre
 */
 
 #ifndef  _EXCEPTIONS_H_
 # define  _EXCEPTIONS_H_
 
 #include	<setjmp.h>
-#include	"list.h"
+#include	"TypeListInc.h"
 
 jmp_buf		*__get_jump(void);
 char		__catch_func(char *);
