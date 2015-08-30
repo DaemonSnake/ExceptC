@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Sun Aug 30 03:51:43 2015 bastien penavayre
-## Last update Sun Aug 30 04:59:28 2015 bastien penavayre
+## Last update Sun Aug 30 05:23:55 2015 bastien penavayre
 ##
 
 CC =		gcc
@@ -14,13 +14,14 @@ RM =		rm -f
 
 NAME =		libExcept.so
 
-SRC =		exceptions.c
+SRC =		src/exceptions.c \
+		src/jump_buffer.c
 
 OBJ =		$(SRC:.c=.o)
 
 COMMON =	-W -Wall -Werror -Wextra
 
-CFLAGS =	$(COMMON) -I TypeListC/inc/ -fPIC
+CFLAGS =	$(COMMON) -I TypeListC/inc/ -fPIC -I inc
 
 LDFLAGS =	$(COMMON) -Wl,--whole-archive TypeListC/libListTypeC.a -Wl,--no-whole-archive
 

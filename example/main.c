@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 22:57:56 2015 bastien penavayre
-** Last update Sun Aug 30 04:46:34 2015 bastien penavayre
+** Last update Sun Aug 30 05:12:40 2015 bastien penavayre
 */
 
 #include	<stdio.h>
@@ -14,7 +14,7 @@
 int		division(int left, int right)
 {
   if (right == 0)
-    throw(char *, strdup("Tu ne peut pas diviser par 0!"));
+    throw(char *, strdup("Division by zero Exception"));
   return left / right;
 }
 
@@ -27,15 +27,13 @@ int		main()
     }
   catch(char *)
     {
-      char	*var;
+      char	*msg;
 
-      fillException(var);
-      printf("%s\n", var);
-      free(var);
+      fillException(msg);
+      printf("%s\n", msg);
+      free(msg);
     }
   catch()
-    {
-      printf("An exception occured\n");
-    }
+    printf("An exception occured\n");
   return 0;
 }
