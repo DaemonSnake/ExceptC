@@ -1,0 +1,1 @@
+to nest the try ( try { try { ... } } ) I need to replace the current use of one jmp_buf with a stack of jmp_buf to pop (front) at every throw and push (front) at every try.

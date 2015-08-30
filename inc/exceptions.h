@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:22:46 2015 bastien penavayre
-** Last update Sun Aug 30 04:46:08 2015 bastien penavayre
+** Last update Sun Aug 30 06:12:05 2015 bastien penavayre
 */
 
 #ifndef  _EXCEPTIONS_H_
