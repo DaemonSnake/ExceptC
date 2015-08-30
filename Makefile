@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Sun Aug 30 03:51:43 2015 bastien penavayre
-## Last update Sun Aug 30 05:23:55 2015 bastien penavayre
+## Last update Sun Aug 30 08:51:27 2015 bastien penavayre
 ##
 
 CC =		gcc
@@ -19,17 +19,19 @@ SRC =		src/exceptions.c \
 
 OBJ =		$(SRC:.c=.o)
 
+OBJS =		$(OBJ) TypeListC/libListTypeC.a
+
 COMMON =	-W -Wall -Werror -Wextra
 
 CFLAGS =	$(COMMON) -I TypeListC/inc/ -fPIC -I inc
 
-LDFLAGS =	$(COMMON) -Wl,--whole-archive TypeListC/libListTypeC.a -Wl,--no-whole-archive
+LDFLAGS =	$(COMMON)
 
 all: 		$(NAME)
 
 $(NAME): 	$(OBJ)
 		make -C TypeListC libListTypeC.a
-		$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) -shared
+		$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) -shared
 clean:
 		$(RM) $(OBJ)
 
