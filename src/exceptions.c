@@ -5,11 +5,12 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:26:37 2015 bastien penavayre
-** Last update Sun Aug 30 05:33:03 2015 bastien penavayre
+** Last update Sun Aug 30 07:36:02 2015 bastien penavayre
 */
 
 #include	<stdlib.h>
 #include	<string.h>
+#include	<stdio.h>
 #include	"exceptions.h"
 
 static t_list	*list = NULL;
@@ -29,8 +30,14 @@ static void	end_list(void)
 
 void		__throw_func(char *type, size_t size, void *arg)
 {
+  jmp_buf	*pointer_save;
+
   __push_type(type, size, list, arg);
-  longjmp(*__get_jump(), -1);
+  if ((pointer_save = __get_jump()) == NULL)
+    perror("Unhandled exception");
+  if (!__pop_buff())
+    perror("Unhandled exception");
+  longjmp(*pointer_save, -1);
 }
 
 char		__catch_func(char *type)
@@ -49,7 +56,7 @@ char		__catch_func(char *type)
   return 0;
 }
 
-void		fill_exception(void *arg)
+void		__fill_exception(void *arg)
 {
   if (last == NULL)
     return ;

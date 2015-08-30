@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 22:57:56 2015 bastien penavayre
-** Last update Sun Aug 30 06:28:15 2015 bastien penavayre
+** Last update Sun Aug 30 07:45:33 2015 bastien penavayre
 */
 
 #include	<stdio.h>
@@ -18,15 +18,12 @@ int		division(int left, int right)
   return left / right;
 }
 
-int		main()
+void		do_stuff()
 {
-  int		div = 0;
-
   try
     {
       division(5, 2);
-      division(1, div);
-      throw(double, 2.54);
+      division(1, 0);
     }
   catch(char *)
     {
@@ -37,6 +34,12 @@ int		main()
       free(msg);
       throw(int, 5);
     }
+}
+
+int		main()
+{
+  try
+    do_stuff();
   catch()
     printf("An exception occured\n");
   return 0;
