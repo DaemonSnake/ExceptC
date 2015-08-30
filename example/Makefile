@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Sun Aug 30 04:49:10 2015 bastien penavayre
-## Last update Sun Aug 30 05:17:09 2015 bastien penavayre
+## Last update Sun Aug 30 05:28:23 2015 bastien penavayre
 ##
 
 CC =		gcc
@@ -27,6 +27,7 @@ LDFLAGS =	$(COMMON) -L .. -lExcept -Wl,-rpath=../
 all: 		$(NAME)
 
 $(NAME): 	$(OBJ)
+		make -C ..
 		$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 clean:
 		$(RM) $(OBJ)

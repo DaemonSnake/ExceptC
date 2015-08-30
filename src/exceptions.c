@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:26:37 2015 bastien penavayre
-** Last update Sun Aug 30 05:23:28 2015 bastien penavayre
+** Last update Sun Aug 30 05:33:03 2015 bastien penavayre
 */
 
 #include	<stdlib.h>
@@ -43,10 +43,8 @@ char		__catch_func(char *type)
   while (tmp != NULL)
     {
       if (strcmp(type, tmp->type) == 0)
-	{
-	  last = tmp;
-	  return 42;
-	}
+	return ((last = tmp) ? 42 : 42);
+      tmp = tmp->next;
     }
   return 0;
 }

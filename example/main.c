@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 22:57:56 2015 bastien penavayre
-** Last update Sun Aug 30 05:12:40 2015 bastien penavayre
+** Last update Sun Aug 30 05:33:26 2015 bastien penavayre
 */
 
 #include	<stdio.h>
@@ -24,6 +24,7 @@ int		main()
     {
       division(5, 2);
       division(1, 0);
+      throw(double, 2.54);
     }
   catch(char *)
     {
