@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:22:46 2015 bastien penavayre
-** Last update Sun Aug 30 08:54:36 2015 bastien penavayre
+** Last update Sun Aug 30 09:33:29 2015 bastien penavayre
 */
 
 #ifndef  _EXCEPTIONS_H_
@@ -16,10 +16,10 @@
 
 jmp_buf		*__get_jump(void);
 char		__catch_func(char *);
-void		*__fill_exception(void *);
-void		__throw_func(char *, size_t, void *);
+char		__fill_exception(void *);
 char		__push_buff(void);
 char		__pop_buff(void);
+void		__throw_func(char *, size_t, void *);
 
 #define try if (__push_buff() && setjmp(*__get_jump()) == 0)
 #define throw(type, var)						\

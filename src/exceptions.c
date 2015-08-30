@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:26:37 2015 bastien penavayre
-** Last update Sun Aug 30 08:47:09 2015 bastien penavayre
+** Last update Sun Aug 30 09:33:16 2015 bastien penavayre
 */
 
 #include	<stdlib.h>
@@ -60,11 +60,11 @@ char		__catch_func(char *type)
   return 0;
 }
 
-void		*__fill_exception(void *arg)
+char		__fill_exception(void *arg)
 {
   if (last == NULL)
-    return arg;
+    return 0;
   pop_if_same(arg, last, list);
   last = NULL;
-  return arg;
+  return 42;
 }
