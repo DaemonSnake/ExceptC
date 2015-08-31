@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:26:37 2015 bastien penavayre
-** Last update Sun Aug 30 09:33:16 2015 bastien penavayre
+** Last update Mon Aug 31 08:22:58 2015 bastien penavayre
 */
 
 #include	<stdlib.h>
@@ -49,7 +49,10 @@ char		__catch_func(char *type)
   t_node	*tmp;
 
   if (type == NULL || *type == '\0')
-    return 42;
+    {
+      pop_if_same(NULL, list->start, list);
+      return 42;
+    }
   tmp = list->start;
   while (tmp != NULL)
     {
