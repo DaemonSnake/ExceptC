@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Sun Aug 30 04:49:10 2015 bastien penavayre
-## Last update Sun Aug 30 08:53:49 2015 bastien penavayre
+## Last update Mon Sep  7 01:37:18 2015 bastien penavayre
 ##
 
 CC =		gcc
@@ -18,7 +18,7 @@ SRC =		main.c
 
 OBJ =		$(SRC:.c=.o)
 
-COMMON =	-W -Wall -Werror -Wextra
+COMMON =	-W -Wall -Werror -Wextra -g3
 
 CFLAGS =	$(COMMON) -I ../inc/
 

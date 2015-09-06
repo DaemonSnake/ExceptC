@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:26:37 2015 bastien penavayre
-** Last update Mon Aug 31 08:22:58 2015 bastien penavayre
+** Last update Mon Sep  7 01:55:32 2015 bastien penavayre
 */
 
 #include	<stdlib.h>
@@ -34,11 +34,21 @@ static void	bad_call_exit(char *string)
   exit(EXIT_FAILURE);
 }
 
-void		__throw_func(char *type, size_t size, void *arg)
+void		**__create_empty(char *type, size_t size)
+{
+  void		*arg;
+
+  if ((arg = malloc(size)) == NULL)
+    return NULL;
+  __push_type(type, size, list, arg);
+  return (void **)&list->start->data;
+}
+
+void		__throw_func(int useless, ...)
 {
   jmp_buf	*pointer_save;
 
-  __push_type(type, size, list, arg);
+  (void)useless;
   if (((pointer_save = __get_jump()) == NULL) || !__pop_buff())
     bad_call_exit("Unhandled exception");
   longjmp(*pointer_save, -1);
@@ -70,4 +80,13 @@ char		__fill_exception(void *arg)
   pop_if_same(arg, last, list);
   last = NULL;
   return 42;
+}
+
+void		__fail_catch(void)
+{
+  jmp_buf	*pointer_save;
+
+  if (((pointer_save = __get_jump()) == NULL) || !__pop_buff())
+    bad_call_exit("Unhandled exception");
+  longjmp(*pointer_save, -1);
 }
