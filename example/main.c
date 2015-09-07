@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 22:57:56 2015 bastien penavayre
-** Last update Mon Sep  7 01:57:31 2015 bastien penavayre
+** Last update Mon Sep  7 03:01:26 2015 bastien penavayre
 */
 
 #include	<stdio.h>
@@ -30,8 +30,8 @@ void		do_stuff()
       char	*msg = setException(msg);
       printf("%s\n", msg);
       free(msg);
-      throw(int, 5);
-  }
+      throw(double, 5);
+    }
   dispatchUncaught;
 }
 

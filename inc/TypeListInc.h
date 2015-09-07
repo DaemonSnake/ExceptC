@@ -5,11 +5,11 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Aug 27 07:06:44 2015 bastien penavayre
-** Last update Sun Aug 30 08:47:44 2015 bastien penavayre
+** Last update Mon Sep  7 02:14:35 2015 bastien penavayre
 */
 
-#ifndef  TYPE_LIST_INC_H_
-# define   TYPE_LIST_INC_H_
+#ifndef  LIST_H_
+# define  LIST_H_
 
 /*
 ** INCLUDES
@@ -22,11 +22,7 @@
 ** DEFINES
 */
 
-# define TMP_POINTER(x)				\
-  ({						\
-    typeof(x)	__TMP__ = x;			\
-    &__TMP__;					\
-  })
+#define CREATE_LIST(...) __create_list((NULL, ##__VA_ARGS__))
 
 /*
 ** TYPES
@@ -53,6 +49,8 @@ typedef		struct
 ** PROTOTYPES
 */
 
+char		contains_type(char *, t_list *);
+char		pop_type(void *, char *, t_list *);
 void		delete_list(t_list *);
 char            pop_if_same(void *, t_node *, t_list *);
 
@@ -63,4 +61,4 @@ char            pop_if_same(void *, t_node *, t_list *);
 t_list		*__create_list(t_list *);
 void		__push_type(char *, size_t, t_list *, char *);
 
-#endif /*   TYPE_LIST_INC_H_ */
+#endif /*  LIST_H_ */

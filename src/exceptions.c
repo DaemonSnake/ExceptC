@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Tue Jul 28 23:26:37 2015 bastien penavayre
-** Last update Mon Sep  7 01:55:32 2015 bastien penavayre
+** Last update Mon Sep  7 03:02:54 2015 bastien penavayre
 */
 
 #include	<stdlib.h>
@@ -28,9 +28,12 @@ static void	end_list(void)
   delete_list(list);
 }
 
-static void	bad_call_exit(char *string)
+static void	bad_call_exit(const char *file, const char *function,
+			      int line)
 {
-  fprintf(stderr, "\x1b[31m[Error] %s, force exit!\x1b[0m\n", string);
+  fprintf(stderr, "\x1b[31m[Error] Unhandled exception, force exit!\n"
+	  "\x1b[32m(file : %s, function : %s, line %d)\x1b[0m\n",
+	  file, function, line);
   exit(EXIT_FAILURE);
 }
 
@@ -44,13 +47,12 @@ void		**__create_empty(char *type, size_t size)
   return (void **)&list->start->data;
 }
 
-void		__throw_func(int useless, ...)
+void		__throw_func(const char *file, const char *func, int line, ...)
 {
   jmp_buf	*pointer_save;
 
-  (void)useless;
   if (((pointer_save = __get_jump()) == NULL) || !__pop_buff())
-    bad_call_exit("Unhandled exception");
+    bad_call_exit(file, func, line);
   longjmp(*pointer_save, -1);
 }
 
@@ -82,11 +84,11 @@ char		__fill_exception(void *arg)
   return 42;
 }
 
-void		__fail_catch(void)
+void		__fail_catch(const char *file, const char *func, int line)
 {
   jmp_buf	*pointer_save;
 
   if (((pointer_save = __get_jump()) == NULL) || !__pop_buff())
-    bad_call_exit("Unhandled exception");
+    bad_call_exit(file, func, line);
   longjmp(*pointer_save, -1);
 }
