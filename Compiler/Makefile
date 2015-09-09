@@ -4,34 +4,46 @@
 ## Made by bastien penavayre
 ## Login   <penava_b@epitech.net>
 ## 
-## Started on  Mon Sep  7 00:39:56 2015 bastien penavayre
-## Last update Mon Sep  7 00:40:01 2015 bastien penavayre
+## Started on  Tue Sep  8 16:03:29 2015 bastien penavayre
+## Last update Tue Sep  8 17:03:53 2015 bastien penavayre
 ##
 
-CXX		= g++
+CXX =		g++
 
 RM =		rm -f
 
-NAME =		tryGcc
+NAME_COMP =	tryObj
 
-SRC =		main.cpp
+NAME_LINK =	tryLink
 
-OBJ =		$(SRC:.cpp=.o)
+SRC_COMP =	src/obj.cpp \
+                src/Precompilator.cpp
+
+SRC_LINK =	src/link.cpp \
+		src/Precompilator.cpp
+
+OBJ_COMP =	$(SRC_COMP:.cpp=.o)
+
+OBJ_LINK =	$(SRC_LINK:.cpp=.o)
 
 COMMON =       	-W -Wall -Wextra -Werror -std=c++11
 
-CXXFLAGS =     	$(COMMON)
+CXXFLAGS =     	$(COMMON) -Iinc
 
 LINKING =      	$(COMMON)
 
-all:		$(NAME)
+all:		$(NAME_COMP) $(NAME_LINK)
 
-$(NAME):	$(OBJ)
-		$(CXX) $(OBJ) -o $(NAME) $(LINKING)
+$(NAME_COMP):	$(OBJ_COMP)
+		$(CXX) $(OBJ_COMP) -o $(NAME_COMP) $(LINKING)
+
+$(NAME_LINK):	$(OBJ_LINK)
+		$(CXX) $(OBJ_LINK) -o $(NAME_LINK) $(LINKING)
+
 clean:
-		$(RM) $(OBJ)
+		$(RM) $(OBJ_LINK) $(OBJ_COMP)
 
 fclean: 	clean
-		$(RM) $(NAME)
+		$(RM) $(NAME_COMP) $(NAME_LINK)
 
 re: 		fclean all
