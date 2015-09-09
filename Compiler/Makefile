@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Tue Sep  8 16:03:29 2015 bastien penavayre
-## Last update Tue Sep  8 17:03:53 2015 bastien penavayre
+## Last update Wed Sep  9 16:20:44 2015 bastien penavayre
 ##
 
 CXX =		g++
@@ -16,11 +16,14 @@ NAME_COMP =	tryObj
 
 NAME_LINK =	tryLink
 
+SRC =		src/Precompilator.cpp \
+		src/Pipe.cpp
+
 SRC_COMP =	src/obj.cpp \
-                src/Precompilator.cpp
+		$(SRC)
 
 SRC_LINK =	src/link.cpp \
-		src/Precompilator.cpp
+		$(SRC)
 
 OBJ_COMP =	$(SRC_COMP:.cpp=.o)
 
