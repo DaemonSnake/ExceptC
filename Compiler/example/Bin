@@ -1,1 +1,2 @@
+make -C ..;
 ../tryLink gcc [ -o $1 ] test.c test2.c;

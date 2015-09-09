@@ -5,7 +5,7 @@
 // Login   <penava_b@epitech.net>
 // 
 // Started on  Tue Sep  8 15:58:18 2015 bastien penavayre
-// Last update Wed Sep  9 15:03:40 2015 bastien penavayre
+// Last update Wed Sep  9 15:18:48 2015 bastien penavayre
 //
 
 #pragma once
@@ -27,6 +27,7 @@ class				Precompilator
     ~Pipe();
     int				read();
     int				write();
+    void			closeAll();
     void			reset();
   };
 

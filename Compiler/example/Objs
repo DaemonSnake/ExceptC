@@ -1,1 +1,2 @@
+make -C ..;
 ../tryObj gcc test.c test2.c;

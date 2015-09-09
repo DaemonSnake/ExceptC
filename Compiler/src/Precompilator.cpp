@@ -5,7 +5,7 @@
 // Login   <penava_b@epitech.net>
 // 
 // Started on  Tue Sep  8 15:59:28 2015 bastien penavayre
-// Last update Wed Sep  9 15:07:38 2015 bastien penavayre
+// Last update Wed Sep  9 15:20:04 2015 bastien penavayre
 //
 
 #include <Precompilator.hh>
@@ -83,7 +83,8 @@ void			Precompilator::launch<false>()
 	  write(fd, "\n", 1);
 	}
     }
-  waitpid(-1, &return_, 0);
+  _pipe.closeAll();
+  waitpid(_pid, &return_, 0);
 }
 
 template		<>
@@ -112,7 +113,7 @@ void			Precompilator::launch<true>()
 	  write(fd, "\n", 1);
 	}
       _pipe.reset();
-      waitpid(-1, &return_, 0);
+      waitpid(_pid, &return_, 0);
       rename(LINK_C, to_obj(file).c_str());
     }
 }
@@ -154,7 +155,7 @@ int				Precompilator::Pipe::write()
   return _pipe[1];
 }
 
-void				Precompilator::Pipe::reset()
+void				Precompilator::Pipe::closeAll()
 {
   if (!_closed[0])
     close(_pipe[0]);
@@ -162,5 +163,10 @@ void				Precompilator::Pipe::reset()
     close(_pipe[1]);
   _closed[0] = false;
   _closed[1] = false;
+}
+
+void				Precompilator::Pipe::reset()
+{
+  closeAll();
   pipe(_pipe);
 }
