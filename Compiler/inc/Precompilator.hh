@@ -5,7 +5,7 @@
 // Login   <penava_b@epitech.net>
 // 
 // Started on  Tue Sep  8 15:58:18 2015 bastien penavayre
-// Last update Wed Sep  9 15:18:48 2015 bastien penavayre
+// Last update Wed Sep  9 16:13:32 2015 bastien penavayre
 //
 
 #pragma once
@@ -21,6 +21,14 @@ class				Precompilator
   {
     int				_pipe[2];
     bool			_closed[2] = { false, false };
+
+    enum			action
+      {
+	READ = 0, WRITE = 1
+      };
+
+    template			<action a>
+    void       			setFor();
 
   public:
     Pipe();
@@ -38,6 +46,7 @@ class				Precompilator
   pid_t				_pid;
 
   void				call();
+  void				threatFile(const char *, int);
   static std::string   		to_obj(std::string &&);
 
 public:

@@ -5,7 +5,7 @@
 // Login   <penava_b@epitech.net>
 // 
 // Started on  Tue Sep  8 15:59:28 2015 bastien penavayre
-// Last update Wed Sep  9 15:20:04 2015 bastien penavayre
+// Last update Wed Sep  9 16:13:58 2015 bastien penavayre
 //
 
 #include <Precompilator.hh>
@@ -63,6 +63,20 @@ std::string		Precompilator::to_obj(std::string &&other)
   return other.replace(s, other.length(), ".o");
 }
 
+void			Precompilator::threatFile(const char *file, int fd)
+{
+  std::ifstream    	stream(file);
+  std::string		s;
+
+  if (!stream.is_open())
+    throw std::invalid_argument("Incorrect file : " + std::string(file));
+  while (std::getline(stream, s))
+    {
+      write(fd, s.c_str(), s.length());
+      write(fd, "\n", 1);
+    }
+}
+
 template		<>
 void			Precompilator::launch<false>()
 {
@@ -73,16 +87,7 @@ void			Precompilator::launch<false>()
   call();
   fd = _pipe.write();
   for (const char *file : _files)
-    {
-      std::ifstream    	stream(file);
-      if (!stream.is_open())
-	throw std::invalid_argument("Incorrect file : " + std::string(file));
-      while (std::getline(stream, s))
-	{
-	  write(fd, s.c_str(), s.length());
-	  write(fd, "\n", 1);
-	}
-    }
+    threatFile(file, fd);
   _pipe.closeAll();
   waitpid(_pid, &return_, 0);
 }
@@ -104,14 +109,7 @@ void			Precompilator::launch<true>()
     {
       call();
       fd = _pipe.write();
-      std::ifstream    	stream(file);
-      if (!stream.is_open())
-	throw std::invalid_argument("Incorrect file : " + std::string(file));
-      while (std::getline(stream, s))
-	{
-	  write(fd, s.c_str(), s.length());
-	  write(fd, "\n", 1);
-	}
+      threatFile(file, fd);
       _pipe.reset();
       waitpid(_pid, &return_, 0);
       rename(LINK_C, to_obj(file).c_str());
@@ -125,33 +123,31 @@ Precompilator::Pipe::~Pipe() {
   _closed[1] ? close(_pipe[1]) : 0;
 }
 
-int				Precompilator::Pipe::read()
+template			<Precompilator::Pipe::action a>
+void				Precompilator::Pipe::setFor()
 {
-  if (!_closed[1])
+
+  if (!_closed[static_cast<int>(!a)])
     {
-      _closed[1] = true;
-      close(_pipe[1]);
+      _closed[static_cast<int>(!a)] = true;
+      close(_pipe[static_cast<int>(!a)]);
     }
-  if (_closed[0])
+  if (_closed[static_cast<int>(a)])
     {
-      _closed[0] = false;
+      _closed[static_cast<int>(a)] = false;
       pipe(_pipe);
     }
+}
+
+int				Precompilator::Pipe::read()
+{
+  setFor<READ>();
   return _pipe[0];
 }
 
 int				Precompilator::Pipe::write()
 {
-  if (!_closed[0])
-    {
-      _closed[0] = true;
-      close(_pipe[0]);
-    }
-  if (_closed[1])
-    {
-      _closed[1] = false;
-      pipe(_pipe);
-    }
+  setFor<WRITE>();
   return _pipe[1];
 }
 
