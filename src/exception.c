@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Nov 26 18:54:58 2015 penava_b
-** Last update Fri Nov 27 17:59:42 2015 penava_b
+** Last update Fri Nov 27 18:13:30 2015 penava_b
 */
 
 #include <stdio.h>
@@ -83,7 +83,7 @@ static void    	trace_back(const char *file, const char *func, int line)
   exit(42);
 }
 
-void		__throw_func(const char *type, char *obj, const char *file, const char *func, int line, void (*deletor)(void *))
+void		__except_throw_func(const char *type, char *obj, const char *file, const char *func, int line, void (*deletor)(void *))
 {
   info_node	*node;
 
@@ -121,7 +121,7 @@ void		__throw_func(const char *type, char *obj, const char *file, const char *fu
   longjmp(list->buff, -1);
 }
 
-int    		__dispatcher(const char *file, const char *func, int line)
+int    		__except_dispatcher(const char *file, const char *func, int line)
 {
   if (list->status == 0)
     {
@@ -141,13 +141,13 @@ int    		__dispatcher(const char *file, const char *func, int line)
       list->obj = NULL;
       list->deletor = NULL;
       pop_current();
-      __throw_func(list->type, list->obj, file, func, line, list->deletor);
+      __except_throw_func(list->type, list->obj, file, func, line, list->deletor);
     }
   pop_current();
   return 0;
 }
 
-int    		__initializer()
+int    		__except_initializer()
 {
   List 		*tmp = malloc(sizeof(List));
 
@@ -163,7 +163,7 @@ int    		__initializer()
   return 42;
 }
 
-int    		__catch_func(const char *type)
+int    		__except_catch_func(const char *type)
 {
   if (list == NULL)
     exit(fprintf(stderr, "[Exception Module] LOL, Wat u fink U R dooing?\n"));
