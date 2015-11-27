@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 02:11:31 2015 penava_b
-** Last update Fri Nov 27 18:12:35 2015 penava_b
+** Last update Fri Nov 27 18:16:53 2015 penava_b
 */
 
 #pragma once
@@ -32,4 +32,4 @@ void		*__except_get_data();
 #define throw(type, var, ...)					\
   __except_throw_func(#type, var, __FILE__, __FUNCTION__, __LINE__, (__except_dont_do_shit, ##__VA_ARGS__))
 
-#define getExcept(type, name) type tmp = (type)__except_get_data()
+#define getExcept(type, name) type name = (type)__except_get_data()
