@@ -5,32 +5,61 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 03:44:25 2015 penava_b
-** Last update Fri Nov 27 04:08:06 2015 penava_b
+** Last update Fri Nov 27 17:32:14 2015 penava_b
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "exception.h"
+#include "unitTest_builder.h"
 
-#define StringyFy(x) #x
+#define COMPILE_FLAGS -W -Wall -Wextra -Werror -I ../inc/ -Wl,-rpath=.. -L=.. -lExcept
+#define INCLUDES #include <stdio.h> #include <stdlib.h> #include "exception.h"
 
-__attribute__((constructor))
-inline void    	TESTS()
+NEW_TESTS()
 {
-}
+  PUSH_TEST("Standard", {
+      try {
+  	throw(Object, "Hello");
+      }
+      catch(Object) {
+      	printf("Catched Object!\n");
+      }
+    });
 
-void		write_new_code()
-{
-}
+  PUSH_TEST("Standard", {
+      try {
+  	try {
+  	  throw(Object, "Hello");
+  	}
+  	catch(String) {
+  	  printf("Is a String\n");
+  	}
+      }
+      catch(Object) {
+  	printf("Is Object\n");
+      }
+    });
 
-void		call()
-{
-}
+  PUSH_TEST("NoTry", {
+      throw(Object, "Hello");
+    });
 
-int		main(int ac, char **av)
-{
-  int		i;
+  PUSH_TEST("unchaught with try", {
+      try {
+	throw(Object, "Hello");
+      }
+      catch(String) {
+      }
+    });
 
-  for (i = 1; i < ac; i++)
-    call(av[i]);
+  PUSH_TEST("uncaught in catch", {
+      try {
+  	throw (Object, "Hello");
+      }
+      catch(Object) {
+  	try {
+  	  throw(Object, "Loello");
+  	}
+  	catch(String) {
+  	}
+      }
+    });
 }

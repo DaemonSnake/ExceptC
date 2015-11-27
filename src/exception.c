@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Nov 26 18:54:58 2015 penava_b
-** Last update Fri Nov 27 03:33:50 2015 penava_b
+** Last update Fri Nov 27 17:13:05 2015 penava_b
 */
 
 #include <stdio.h>
@@ -89,6 +89,8 @@ void		__throw_func(const char *type, char *obj, const char *file, const char *fu
 
   while (list != NULL && list->status == 3)
     {
+      if (list->next == NULL)
+	trace_back(file, func, line);
       if (list->obj == obj)
 	{
 	  if (list->deletor != deletor)
