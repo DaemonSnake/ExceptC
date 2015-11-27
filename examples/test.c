@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 03:44:25 2015 penava_b
-** Last update Fri Nov 27 17:32:14 2015 penava_b
+** Last update Fri Nov 27 18:05:17 2015 penava_b
 */
 
 #include "unitTest_builder.h"
@@ -60,6 +60,16 @@ NEW_TESTS()
   	}
   	catch(String) {
   	}
+      }
+    });
+
+  PUSH_TEST("get", {
+      try {
+	throw(char*, "LOl yolo");
+      }
+      catch(char*) {
+	getExcept(char*, tmp);
+	printf("Exception of value : %s\n", tmp);
       }
     });
 }

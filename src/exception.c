@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Nov 26 18:54:58 2015 penava_b
-** Last update Fri Nov 27 17:13:05 2015 penava_b
+** Last update Fri Nov 27 17:59:42 2015 penava_b
 */
 
 #include <stdio.h>
@@ -165,12 +165,21 @@ int    		__initializer()
 
 int    		__catch_func(const char *type)
 {
+  if (list == NULL)
+    exit(fprintf(stderr, "[Exception Module] LOL, Wat u fink U R dooing?\n"));
   if (strcmp(type, list->type) == 0)
     {
       list->status = 3;
       return 42;
     }
   return 0;
+}
+
+void		*__except_get_data()
+{
+  if (list == NULL || list->status != 3)
+    exit(fprintf(stderr, "[Exception Module] LOL, Wat u fink U R dooing?\n"));
+  return list->obj;
 }
 
 void	       	*__except_get_front()
