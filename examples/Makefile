@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Fri Nov 27 03:47:06 2015 penava_b
-## Last update Sun Nov 29 03:22:49 2015 penava_b
+## Last update Sun Nov 29 05:08:54 2015 penava_b
 ##
 
 CC =		gcc
@@ -20,25 +20,25 @@ OBJ =		$(SRC:.c=.o)
 
 COMMON =	-W -Wall -Werror -Wextra -g3
 
-CFLAGS =	$(COMMON) -I ../builder
+CFLAGS =	$(COMMON) -I ../CUnitTestBuilder/inc/
 
-LDFLAGS =	$(COMMON) -L../builder/ -lUnitTest -Wl,-rpath=../builder/
+LDFLAGS =	$(COMMON) -L../CUnitTestBuilder/ -lUnitTest -Wl,-rpath=../CUnitTestBuilder/
 
 all: 		$(NAME)
 
 $(NAME): 	$(OBJ)
 		$(MAKE) -C .. all
-		$(MAKE) -C ../builder all
+		$(MAKE) -C ../CUnitTestBuilder/ all
 		$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 clean:
 		$(MAKE) -C .. clean
-		$(MAKE) -C ../builder clean
+		$(MAKE) -C ../CUnitTestBuilder/ clean
 		$(RM) $(OBJ)
 
 fclean: 	clean
 		$(MAKE) -C .. fclean
-		$(MAKE) -C ../builder fclean
+		$(MAKE) -C ../CUnitTestBuilder/ fclean
 		$(RM) $(NAME)
 		$(RM) _test_*
 		$(RM) TestAll

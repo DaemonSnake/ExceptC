@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Nov 26 18:54:58 2015 penava_b
-** Last update Fri Nov 27 18:40:24 2015 penava_b
+** Last update Sun Nov 29 06:41:27 2015 penava_b
 */
 
 #include <stdio.h>
@@ -32,6 +32,7 @@ struct	       	s_node
   char  	*obj;
   void		(*deletor)(void *);
   info_node    	*origin;
+  char		catchTool;
   List	       	*next;
 };
 
@@ -160,6 +161,7 @@ int    		__except_initializer()
   tmp->type = NULL;
   tmp->obj = NULL;
   tmp->origin = NULL;
+  tmp->catchTool = 0;
   list = tmp;
   return 42;
 }
@@ -203,4 +205,11 @@ void		*__except_get_non_last(void *first, ...)
     first = save;
   va_end(ap);
   return first;
+}
+
+char		__except_get_catch_tool()
+{
+  if (list == NULL)
+    return 0;
+  return (list->catchTool ^= 1);
 }

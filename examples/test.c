@@ -5,71 +5,80 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 03:44:25 2015 penava_b
-** Last update Fri Nov 27 18:05:17 2015 penava_b
+** Last update Sun Nov 29 07:22:17 2015 penava_b
 */
 
-#include "unitTest_builder.h"
+#include "unit_test_builder.h"
 
 #define COMPILE_FLAGS -W -Wall -Wextra -Werror -I ../inc/ -Wl,-rpath=.. -L=.. -lExcept
-#define INCLUDES #include <stdio.h> #include <stdlib.h> #include "exception.h"
+#define INCLUDES #include <stdio.h> #include <stdlib.h> #include "exception.h" #include <string.h>
 
 NEW_TESTS()
 {
   PUSH_TEST("Standard", {
       try {
-  	throw(Object, "Hello");
+  	throw(char*, "Hello");
       }
-      catch(Object) {
-      	printf("Catched Object!\n");
+      catch(char*, except) {
+      	printf("Catched char*!\n");
       }
     });
 
   PUSH_TEST("Standard", {
       try {
   	try {
-  	  throw(Object, "Hello");
+  	  throw(char*, "Hello");
   	}
-  	catch(String) {
-  	  printf("Is a String\n");
+  	catch(double*, except) {
+  	  printf("Is a double*\n");
   	}
       }
-      catch(Object) {
-  	printf("Is Object\n");
+      catch(char*, except) {
+  	printf("Is char*\n");
       }
     });
 
   PUSH_TEST("NoTry", {
-      throw(Object, "Hello");
+      throw(char*, "Hello");
     });
 
   PUSH_TEST("unchaught with try", {
       try {
-	throw(Object, "Hello");
+  	throw(char*, "Hello");
       }
-      catch(String) {
+      catch(double*, except) {
       }
     });
 
   PUSH_TEST("uncaught in catch", {
       try {
-  	throw (Object, "Hello");
+  	throw (char*, "Hello");
       }
-      catch(Object) {
+      catch(char*, except) {
   	try {
-  	  throw(Object, "Loello");
+  	  throw(char*, "Loello");
   	}
-  	catch(String) {
+  	catch(double*, except) {
   	}
       }
     });
 
-  PUSH_TEST("get", {
+  PUSH_TEST("deletor", {
+      throw(double*, strdup("A string"), free);
+    });
+
+  #include "../inc/exception.h"
+  
+  PUSH_TEST("throw back received", {
       try {
-	throw(char*, "LOl yolo");
+      	try
+	  throw(char*, strdup("LOl yolo"), free);
+	catch(char*, except) {
+	  printf("Exception of value : %s\n", except);
+	  throw(char*, except);
+	}
       }
-      catch(char*) {
-	getExcept(char*, tmp);
-	printf("Exception of value : %s\n", tmp);
-      }
+      catch(char*, except)
+      	printf("Received correctly '%s'\n", except);
     });
 }
