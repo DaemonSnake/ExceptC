@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 02:11:31 2015 penava_b
-** Last update Fri Nov 27 18:16:53 2015 penava_b
+** Last update Fri Nov 27 18:40:20 2015 penava_b
 */
 
 #pragma once
@@ -20,6 +20,7 @@ void	       	__except_throw_func(const char *, void *, const char *,
 int	       	__except_catch_func(const char *);
 void		__except_dont_do_shit(void *);
 void		*__except_get_data();
+void		*__except_get_non_last(void *, ...);
 
 #define try							\
   if (__except_initializer())						\
@@ -29,7 +30,8 @@ void		*__except_get_data();
 #define catch(type)							\
   else if (__except_catch_func(#type))
 
-#define throw(type, var, ...)					\
-  __except_throw_func(#type, var, __FILE__, __FUNCTION__, __LINE__, (__except_dont_do_shit, ##__VA_ARGS__))
+#define throw(type, var, ...)						\
+  __except_throw_func(#type, var, __FILE__, __FUNCTION__, __LINE__,	\
+		      __except_get_non_last(__except_dont_do_shit, ##__VA_ARGS__, 0))
 
 #define getExcept(type, name) type name = (type)__except_get_data()

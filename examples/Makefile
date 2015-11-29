@@ -5,7 +5,7 @@
 ## Login   <penava_b@epitech.net>
 ## 
 ## Started on  Fri Nov 27 03:47:06 2015 penava_b
-## Last update Fri Nov 27 17:39:56 2015 penava_b
+## Last update Sun Nov 29 03:22:49 2015 penava_b
 ##
 
 CC =		gcc
@@ -40,7 +40,7 @@ fclean: 	clean
 		$(MAKE) -C .. fclean
 		$(MAKE) -C ../builder fclean
 		$(RM) $(NAME)
-		$(RM) test_*
+		$(RM) _test_*
 		$(RM) TestAll
 
 re: 		fclean all

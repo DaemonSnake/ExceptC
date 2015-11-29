@@ -5,13 +5,14 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Nov 26 18:54:58 2015 penava_b
-** Last update Fri Nov 27 18:13:30 2015 penava_b
+** Last update Fri Nov 27 18:40:24 2015 penava_b
 */
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <setjmp.h>
+#include <stdarg.h>
 
 typedef struct 	s_info_node
 {
@@ -190,4 +191,16 @@ void	       	*__except_get_front()
 void		__except_dont_do_shit(void *arg)
 {
   (void)arg;
+}
+
+void		*__except_get_non_last(void *first, ...)
+{
+  va_list	ap;
+  void		*save;
+
+  va_start(ap, first);
+  while ((save = va_arg(ap, void *)) != 0)
+    first = save;
+  va_end(ap);
+  return first;
 }
