@@ -1,3 +1,6 @@
 [submodule "builder2"]
 	path = builder2
 	url = penava_b@git.epitech.eu:/penava_b/CUnitBuilder
+[submodule "builder"]
+	path = builder
+	url = penava_b@git.epitech.eu:/penava_b/CUnitBuilder
