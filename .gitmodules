@@ -6,4 +6,4 @@
 	url = penava_b@git.epitech.eu:/penava_b/CUnitBuilder
 [submodule "CUnitTestBuilder"]
 	path = CUnitTestBuilder
-	url = penava_b@git.epitech.eu:/penava_b/CUnitBuilder
+	url = https://github.com/swac31/CUnitTestBuilder
