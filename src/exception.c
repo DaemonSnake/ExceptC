@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Thu Nov 26 18:54:58 2015 penava_b
-** Last update Sun Nov 29 06:41:27 2015 penava_b
+** Last update Sat Dec  5 00:42:04 2015 penava_b
 */
 
 #include <stdio.h>
@@ -36,6 +36,7 @@ struct	       	s_node
   List	       	*next;
 };
 
+static __thread
 List		*list = NULL;
 
 static void	clean_node(List *node)

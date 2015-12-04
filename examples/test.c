@@ -5,7 +5,7 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 03:44:25 2015 penava_b
-** Last update Sun Nov 29 07:22:17 2015 penava_b
+** Last update Tue Dec  1 21:29:30 2015 penava_b
 */
 
 #include "unit_test_builder.h"
@@ -66,8 +66,6 @@ NEW_TESTS()
   PUSH_TEST("deletor", {
       throw(double*, strdup("A string"), free);
     });
-
-  #include "../inc/exception.h"
   
   PUSH_TEST("throw back received", {
       try {
