@@ -5,13 +5,13 @@
 ** Login   <penava_b@epitech.net>
 ** 
 ** Started on  Fri Nov 27 03:44:25 2015 penava_b
-** Last update Tue Dec  1 21:29:30 2015 penava_b
+** Last update Sat Dec  5 00:54:12 2015 penava_b
 */
 
 #include "unit_test_builder.h"
 
-#define COMPILE_FLAGS -W -Wall -Wextra -Werror -I ../inc/ -Wl,-rpath=.. -L=.. -lExcept
-#define INCLUDES #include <stdio.h> #include <stdlib.h> #include "exception.h" #include <string.h>
+#define COMPILE_FLAGS -W -Wall -Wextra -Werror -I ../inc/ -Wl,-rpath=.. -L=.. -lExcept -pthread
+#define INCLUDES #include <stdio.h> #include <stdlib.h> #include "exception.h" #include <string.h> #include <pthread.h>
 
 NEW_TESTS()
 {
@@ -78,5 +78,31 @@ NEW_TESTS()
       }
       catch(char*, except)
       	printf("Received correctly '%s'\n", except);
+    });
+
+  PUSH_TEST("Multi-thread", {
+      pthread_t th[10];
+      void	*(th_func)(void *);
+      
+      for (int i = 0; i < 10; i++)
+	pthread_create(&th[i], 0, th_func, 0);
+      for (int i = 0; i < 10; i++)
+	pthread_join(th[i], 0);
+    }
+
+    void	*th_func(void *arg)
+    {
+      (void)arg;
+      for (int i = 0; i < 10000; i++)
+	{
+	  try {
+	    throw(char*, "Hello");
+	  }
+	  catch(void*, tmp) {
+	  }
+	  catch(char*, tmp) {
+	  }
+	}
+      return 0;
     });
 }
